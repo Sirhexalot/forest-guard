@@ -7,10 +7,10 @@ import WorkIcon from 'material-ui/svg-icons/action/work';
 import BugIcon from 'material-ui/svg-icons/action/bug-report';
 import TaskIcon from 'material-ui/svg-icons/action/extension';
 import authClient from './authClient';
-import { UserList } from './UserList';
 import { TaskList } from './TaskList';
 import { restClient } from './RestClient';
 import domainMessages from './i18n';
+import Dashboard from './Dashboard';
 
 const messages = {
   fr: { ...frenchMessages, ...domainMessages.fr },
@@ -19,10 +19,9 @@ const messages = {
 };
 
 const App = () => (
-  <Admin title="Forest Guard" restClient={restClient} authClient={authClient} locale={resolveBrowserLocale()} messages={messages}>
-    <Resource name="users" list={UserList} icon={WorkIcon} />
-    <Resource name="issues" list={TaskList} title="fg.assigned_issues" icon={BugIcon} />
-    <Resource name="tasks" list={TaskList} title="fg.assigned_tasks" icon={TaskIcon} />
+  <Admin title="Forest Guard" restClient={restClient} authClient={authClient} locale={resolveBrowserLocale()} messages={messages} dashboard={Dashboard}>
+    <Resource name="issues" />
+    <Resource name="tasks" />
     <Resource name="project" />
   </Admin>
 );
